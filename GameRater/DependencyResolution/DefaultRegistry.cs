@@ -15,11 +15,17 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Web;
+using GameRater.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+
 namespace GameRater.DependencyResolution {
     using StructureMap;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
-	
+
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
@@ -30,7 +36,8 @@ namespace GameRater.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            //For<IExample>().Use<Example>();
+            For<ApplicationUserManager>().Use(() => HttpContext.Current.GetOwinContext().Get<ApplicationUserManager>());
+            For<ApplicationSignInManager>().Use(() => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
         }
 
         #endregion

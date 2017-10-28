@@ -21,7 +21,7 @@ namespace GameRater.DependencyResolution {
     using System.Linq;
     using System.Web;
 
-    using Microsoft.Practices.ServiceLocation;
+    using CommonServiceLocator;
 
     using StructureMap;
 	
