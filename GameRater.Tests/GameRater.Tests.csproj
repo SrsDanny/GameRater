@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\RepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -99,11 +100,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameRater.DAL\GameRater.DAL.csproj">
+      <Project>{D7CD83B7-734E-487B-8774-761D673AF9DB}</Project>
+      <Name>GameRater.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameRater\GameRater.csproj">
       <Project>{3A33A48A-9E43-4177-BEE4-11CAB176FC6B}</Project>
       <Name>GameRater</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
