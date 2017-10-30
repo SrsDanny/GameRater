@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
+using System.Data.Entity.Infrastructure;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GameRater.DAL.Models
@@ -11,5 +10,9 @@ namespace GameRater.DAL.Models
     {
         DbSet<Game> Games { get; set; }
         DbSet<Review> Reviews { get; set; }
+        int SaveChanges();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync();
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }
 }

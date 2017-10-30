@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using GameRater.DAL.Exceptions;
 using GameRater.DAL.Models;
@@ -17,30 +16,69 @@ namespace GameRater.DAL
             _db = gameRaterContext;
         }
 
-        public void AddGame(Game game)
+        public async Task AddGame(Game game)
         {
             _db.Games.Add(game);
+            await _db.SaveChangesAsync();
         }
 
-        public void AddReview(Review review)
+        public async Task AddReview(Review review)
         {
             var game = _db.Games.Find(review.GameId);
             if (game == null)
             {
-                throw new EntityNotFoundException("Game not found for review entity");
+                throw new EntityNotFoundException("Game not found for Review entity");
             }
-            game.ReviewScore += review.Score;
+
             _db.Reviews.Add(review);
+            await UpdateScoresForGame(game);
+            await _db.SaveChangesAsync();
         }
 
-        public Game GetGameById(int id)
+        public async Task<Game> GetGameById(int id, bool loadReviews = false)
         {
-            return _db.Games.Find(id);
+            var game = await _db.Games.FindAsync(id);
+            if (game != null && loadReviews)
+            {
+                await _db.Entry(game).Collection(g => g.Reviews).LoadAsync();
+            }
+            return game;
         }
 
-        public Review GetReviewById(int id)
+        public async Task<Review> GetReviewById(int id, bool loadGame = false)
         {
-            return _db.Reviews.Find(id);
+            var review = await _db.Reviews.FindAsync(id);
+            if (review != null && loadGame)
+            {
+                await _db.Entry(review).Reference(r => r.Game).LoadAsync();
+            }
+            return review;
+        }
+
+        public async Task DeleteGameById(int id)
+        {
+            var game = await _db.Games.FindAsync(id);
+            if(game == null) return;
+
+            await _db.Entry(game).Collection(g => g.Reviews).LoadAsync();
+            _db.Reviews.RemoveRange(game.Reviews);
+            _db.Games.Remove(game);
+
+            await _db.SaveChangesAsync();
+        }
+
+        private async Task UpdateScoresForGame(Game game)
+        {
+            await _db.Entry(game).Collection(g => g.Reviews).LoadAsync();
+            double totalScore = game.Reviews.Sum(r => r.Score);
+            if (game.Reviews.Count != 0)
+            {
+                game.ReviewScore = totalScore / game.Reviews.Count;
+            }
+            else
+            {
+                game.ReviewScore = 0;
+            }
         }
 
         public void Dispose()
