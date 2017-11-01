@@ -61,7 +61,7 @@ namespace GameRater.Tests.DAL
         [TestInitialize]
         public void SetUp()
         {
-            var ctx = new GameRaterContext();
+            var ctx = new GameRaterContext("TestDb");
             repository = new GameRaterRepository(ctx);
             ctx.Database.BeginTransaction();
         }

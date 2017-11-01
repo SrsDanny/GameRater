@@ -2,8 +2,12 @@
 
 namespace GameRater.DAL.Models
 {
-    public class GameRaterContext : DbContext, IGameRaterContext
+    public class GameRaterContext : DbContext
     {
+        public GameRaterContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+        }
+
         public GameRaterContext() : base("GameRaterDb")
         {
         }

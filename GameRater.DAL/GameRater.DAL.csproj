@@ -50,12 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DalRegistry.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="GameRaterRepository.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameRaterContext.cs" />
-    <Compile Include="Models\IGameRaterContext.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -25,7 +25,6 @@ namespace GameRater.DependencyResolution {
             return new Container(c =>
             {
                 c.AddRegistry<DefaultRegistry>();
-                c.AddRegistry<DalRegistry>();
             });
         }
     }

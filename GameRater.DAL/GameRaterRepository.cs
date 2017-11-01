@@ -9,9 +9,9 @@ namespace GameRater.DAL
 {
     public class GameRaterRepository : IDisposable
     {
-        private IGameRaterContext _db;
+        private GameRaterContext _db;
 
-        public GameRaterRepository(IGameRaterContext gameRaterContext)
+        public GameRaterRepository(GameRaterContext gameRaterContext)
         {
             _db = gameRaterContext;
         }
