@@ -142,5 +142,28 @@ namespace GameRater.Tests.DAL
                 game.ReviewScore.ShouldBe(expectedScore, 1e-10);
             }
         }
+
+        [TestMethod]
+        public async Task DeletingGameDeletesReviews()
+        {
+            var testGame = CreateTestGame();
+            await repository.AddGame(testGame);
+
+            var reviewIds = new List<int>();
+            for (var i = 0; i < 10; i++)
+            {
+                var testReview = CreateTestReview(testGame.Id);
+                await repository.AddReview(testReview);
+                reviewIds.Add(testReview.Id);
+            }
+
+            await repository.DeleteGameById(testGame.Id);
+
+            foreach (var id in reviewIds)
+            {
+                var review = await repository.GetReviewById(id);
+                review.ShouldBeNull();
+            }
+        }
     }
 }
