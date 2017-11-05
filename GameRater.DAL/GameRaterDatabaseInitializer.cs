@@ -552,15 +552,6 @@ The game mixes pure shooting arcade with the use of different bullets to solve a
                 },
                 new Game
                 {
-                    Title = @"Artificial Academy 2",
-                    Summary =
-                        @"Artificial Academy 2 is an eroge high school social simulation, sequel of Artificial Academy.
-
-Create and play any of up to 25 students of varying gender, orientation and other interaction abilities and personal inclinations. Make friends and lovers as the class competes for achievement in academics, athletics, popularity, and romance.",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/coftwsbu3uto83iw73d0.jpg"
-                },
-                new Game
-                {
                     Title = @"House of Caravan",
                     Summary =
                         @"Taking place in a single mansion in Candlewood, northeast USA, in the early 20th Century, House of Caravan is a sinister adventure filled with dark secrets and vexing puzzles.",
@@ -572,16 +563,6 @@ Create and play any of up to 25 students of varying gender, orientation and othe
                     Summary =
                         @"Anthem is a shared-world action RPG, where players can delve into a vast landscape teeming with amazing technology and forgotten treasures. This is a world where Freelancers are called upon to defeat savage beasts, ruthless marauders, and forces plotting to conquer humanity.",
                     ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/f3ikxckp72fwfqottjiu.jpg"
-                },
-                new Game
-                {
-                    Title = @"Artificial Girl 3",
-                    Summary = @"Artificial Girl 3 is an eroge (hentai game) and is the sequel to Artificial Girl 2.
-
-The gameplay involves being a guy and living a life with one or many girls (whose various characteristics are set by the player).
-
-The game is considered by the playerbase to be one of Illusion&#x27;s finest games.",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/x4hz5yacdqanmggyting.jpg"
                 },
                 new Game
                 {
