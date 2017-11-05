@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PagingExtensions
 {
-    public class PagingExtensionMethods
+    public static class PagingExtensionMethods
     {
+        public static PagedQueryable<T> PageBy<T>(this IQueryable<T> source, int pageSize)
+        {
+            return new PagedQueryable<T>(source, pageSize);
+        }
     }
 }
