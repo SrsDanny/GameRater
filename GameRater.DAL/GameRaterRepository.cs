@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using GameRater.DAL.Exceptions;
@@ -88,6 +89,11 @@ namespace GameRater.DAL
                 _db.Dispose();
                 _db = null;
             }
+        }
+
+        public async Task<List<Game>> GetGames()
+        {
+            return await _db.Games.ToListAsync();
         }
     }
 }

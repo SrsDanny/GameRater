@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="GameRaterDatabaseInitializer.cs" />
     <Compile Include="GameRaterRepository.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameRaterContext.cs" />

@@ -8,6 +8,7 @@ namespace GameRater.DAL.Models
         public string Title { get; set; }
         public string Summary { get; set; }
         public double ReviewScore { get; set; }
+        public string ImageUrl { get; set; }
 
         public List<Review> Reviews { get; set; }
     }
