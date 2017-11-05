@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameRater.Tests", "GameRate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameRater.DAL", "GameRater.DAL\GameRater.DAL.csproj", "{D7CD83B7-734E-487B-8774-761D673AF9DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingExtensions", "PagingExtensions\PagingExtensions.csproj", "{37419D1F-F8D5-4E82-A162-C5A70D814B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingExtensions.Tests", "PagingExtensions.Tests\PagingExtensions.Tests.csproj", "{C7D575C5-8BF3-446C-B344-5EAA3398393E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{D7CD83B7-734E-487B-8774-761D673AF9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7CD83B7-734E-487B-8774-761D673AF9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7CD83B7-734E-487B-8774-761D673AF9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37419D1F-F8D5-4E82-A162-C5A70D814B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37419D1F-F8D5-4E82-A162-C5A70D814B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37419D1F-F8D5-4E82-A162-C5A70D814B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37419D1F-F8D5-4E82-A162-C5A70D814B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D575C5-8BF3-446C-B344-5EAA3398393E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D575C5-8BF3-446C-B344-5EAA3398393E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D575C5-8BF3-446C-B344-5EAA3398393E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D575C5-8BF3-446C-B344-5EAA3398393E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
