@@ -309,13 +309,6 @@ Customise and upgrade your heroes, starfighters or troopers - each with unique a
                 },
                 new Game
                 {
-                    Title = @"Porno Studio Tycoon",
-                    Summary =
-                        @"Business simulator with rich economic model (markets with shortages and surpluses, websites with black hat SEO, etc.), flexible configuration of movie production, complex casting, two modes of shooting (fast and detailed ones) and other features. Beautiful graphics and no sexually explicit content.",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/eku1gg56ltnfucepgqny.jpg"
-                },
-                new Game
-                {
                     Title = @"Superfighters Deluxe",
                     Summary =
                         @"Superfighters Deluxe is a multiplayer 2D action game where little flat-headed men fight to the death in small and highly destructible arenas. Surviving each round takes skill, strategy and luck.",
@@ -332,12 +325,6 @@ Horrifying threats emerge from every corner as the world twists and warps around
                 },
                 new Game
                 {
-                    Title = @"Oppai Slider 2",
-                    Summary = @"",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/nkugb4uvps5dzccb1wpl.jpg"
-                },
-                new Game
-                {
                     Title = @"Villagers",
                     Summary =
                         @"Villagers is a beautifully illustrated and richly detailed town-building game where you build a thriving community using the people and resources around you. Success or failure depends on your ability to create a town that can grow and prosper, and overcome the harsh realities of medieval life!",
@@ -349,15 +336,6 @@ Horrifying threats emerge from every corner as the world twists and warps around
                     Summary =
                         @"Like Spintires before it, Spintires: MudRunner puts players in the driver seat and dares them to take charge of incredible all-terrain vehicles, venturing across extreme Siberian landscapes with only a map and compass as guides! This edition comes complete with a brand new Sandbox Map joining the original game&#x27;s 5 environments, a total graphical overhaul, a new Challenge mode with 9 new dedicated maps, 13 new vehicles and other comprehensive improvements.",
                     ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/vxb8ynuasi02xyqxhbs6.jpg"
-                },
-                new Game
-                {
-                    Title = @"A Life in Silk - The First Cumming",
-                    Summary =
-                        @"A Life in Silk is a highly-interactive visual-novel, that tells the story of a feminine sissy boy, who just recently turned 18 and dreams only of becoming a glamorous T-girl Goddess and rule the Big City with his beauty and never ending sexual appetite.
-
-But while stuck in a small suburban town with his single but very libertine Mommy, he knows that to reach his expensive dream of perfect feminine transformation, he will need to seduce as many Sugar Daddies as he can with his advanced oral skills and erotically charge fashion sense, in hopes they will sponsor his transformation.",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/oo0dqt8ollefvigrr6bj.jpg"
                 },
                 new Game
                 {
@@ -434,12 +412,6 @@ In this expansive world, your limits and creativity will be tested against the b
                 },
                 new Game
                 {
-                    Title = @"The Legend of Queen Opala",
-                    Summary = @"",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/itnqsuynccjd08wk4fyz.jpg"
-                },
-                new Game
-                {
                     Title = @"Wild Terra",
                     Summary =
                         @"It is action-RPG and sandbox hybrid with building, crafting, gathering, farming and land claiming elements. There is no NPCs in game so the only way to get something is to create it by yourself or trade from other players... or take it with brutal force. However we understand that not every one have enough time to &quot;live&quot; in game doing everything by their selves that is why all game processes are boosted to make game a little bit casual.
@@ -453,12 +425,6 @@ We can say this about your character development as well. It is very boring to l
                     Summary =
                         @"Pyre is a party-based RPG in which you lead a band of exiles to freedom through ancient competitions spread across a vast, mystical purgatory. Who shall return to glory, and who shall remain in exile to the end of their days?",
                     ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/s8puinmexsgm8cfvipye.jpg"
-                },
-                new Game
-                {
-                    Title = @"SchoolMate 2",
-                    Summary = @"The sequel to Illusion soft Schoolmate series.",
-                    ImageUrl = @"https://images.igdb.com/igdb/image/upload/t_cover_big/zrac3iilq0inlirpxrdv.jpg"
                 },
                 new Game
                 {

@@ -1,0 +1,14 @@
+﻿@model GameRater.Models.PagingViewModel
+    
+Page @Model.CurrentPage/@Model.PageCount
+<nav>
+    <ul class="pagination">
+        <li>
+            <a href="@Model.PreviousPageLink">«</a>
+        </li>
+
+        <li>
+            <a href="@Model.NextPageLink">»</a>
+        </li>
+    </ul>
+</nav>

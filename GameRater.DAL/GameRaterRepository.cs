@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GameRater.DAL.Exceptions;
 using GameRater.DAL.Models;
+using GameRater.DAL.Paging;
 
 namespace GameRater.DAL
 {
@@ -84,16 +85,12 @@ namespace GameRater.DAL
 
         public void Dispose()
         {
-            if (_db != null)
-            {
-                _db.Dispose();
-                _db = null;
-            }
+            _db?.Dispose();
         }
 
-        public async Task<List<Game>> GetGames()
+        public PagedQueryable<Game> GetGamesPaged(int pageSize)
         {
-            return await _db.Games.ToListAsync();
+            return _db.Games.OrderBy(g => g.Id).PageBy(pageSize);
         }
     }
 }

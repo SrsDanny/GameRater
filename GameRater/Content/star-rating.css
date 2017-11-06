@@ -1,0 +1,13 @@
+﻿.star-rating-inner {
+    background-image: url('/Content/images/star-gold.png');
+    background-repeat: repeat-x;
+    height: 40px;
+    width: 200px;
+}
+
+.star-rating-outer {
+    background-image: url('/Content/images/star-grey.png');
+    background-repeat: repeat-x;
+    display: inline-block;
+    width: 200px;
+}

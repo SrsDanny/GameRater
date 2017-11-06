@@ -1,33 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GameRater.DAL;
+using GameRater.Models;
+using GameRater.Models.Games;
 
 namespace GameRater.Controllers
 {
-    public class GameController : Controller
+    public class GamesController : Controller
     {
-        private GameRaterRepository repository;
+        private const int DefaultPageSize = 10;
+        private readonly GameRaterRepository _repository;
 
-        public GameController(GameRaterRepository repository)
+        public GamesController(GameRaterRepository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         // GET: Game
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page, int? pageSize)
         {
-            var games = await repository.GetGames();
-            return View(games);
+            var currentPageSize = pageSize ?? DefaultPageSize;
+            var currentPage = page ?? 1;
+
+            var pagedGames = _repository.GetGamesPaged(currentPageSize);
+            var games = await pagedGames.GetPage(currentPage).ToListAsync();
+            var pageCount = await pagedGames.GetPageCountAsync();
+            var model = new ListGamesViewModel(games,
+                new PagingViewModel(pageCount, currentPage, p => Url.Action("Index", new {page = p})));
+            return View(model);
         }
 
         // GET: Game/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var game = await repository.GetGameById(id, true);
+            var game = await _repository.GetGameById(id, true);
+            if (game == null) return HttpNotFound();
             return View(game);
         }
 
@@ -54,9 +66,11 @@ namespace GameRater.Controllers
         }
 
         // GET: Game/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var game = await _repository.GetGameById(id, true);
+            if (game == null) return HttpNotFound();
+            return View(game);
         }
 
         // POST: Game/Edit/5
@@ -95,6 +109,15 @@ namespace GameRater.Controllers
             {
                 return View();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _repository?.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
