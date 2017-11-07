@@ -26,9 +26,7 @@ namespace GameRater
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/css/star-rating.css",
-                      "~/Content/css/game-details-style.css",
-                      "~/Content/css/game-list-style.css"));
+                      "~/Content/css/*.css"));
         }
     }
 }

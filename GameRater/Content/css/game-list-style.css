@@ -31,3 +31,7 @@
 .game-list-cover:hover p {
     background-color: hsla(0, 0%, 20%, .9);
 }
+
+.game-rating-cell {
+    vertical-align: middle;
+}

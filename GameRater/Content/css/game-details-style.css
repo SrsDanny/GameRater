@@ -12,4 +12,13 @@
     background-color: hsl(0, 0%, 90%);
     list-style: none;
     padding: 8px;
+    border-radius: 5px;
+}
+
+.game-reviews-list li {
+    margin-bottom: 16px;
+}
+
+.game-details-summary-title {
+    margin: 0;
 }

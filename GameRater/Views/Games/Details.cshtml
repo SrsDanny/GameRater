@@ -12,8 +12,12 @@
         @Html.Partial("StarsRating", Model.ReviewScore)
     </div>
     <div class="col-md-9">
-        <h3>Summary</h3>
-        <p>@Model.Summary</p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="game-details-summary-title">Summary</h3>
+            </div>
+            <div class="panel-body">@Model.Summary</div>
+        </div>
     </div>
 </div>
 
@@ -21,13 +25,13 @@
 <ul class="game-reviews-list">
     @foreach (var review in Model.Reviews)
     {
-        <li>
-            @review.Content
+        <li class="panel panel-default">
+            <div class="panel-heading">
+                Username and stuff (rated: @review.Score.ToString("0.0")/5)
+            </div>
+            <div class="panel-body">
+                @review.Content
+            </div>
         </li>
     }
 </ul>
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
