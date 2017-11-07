@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GameRater.DAL;
+using GameRater.DAL.Paging;
 using GameRater.Models;
 using GameRater.Models.Games;
 
@@ -22,16 +23,17 @@ namespace GameRater.Controllers
         }
 
         // GET: Game
-        public async Task<ActionResult> Index(int? page, int? pageSize)
+        public async Task<ActionResult> Index(int? page, string sortBy, string sortOrder)
         {
-            var currentPageSize = pageSize ?? DefaultPageSize;
             var currentPage = page ?? 1;
+            var sortOptions = new SortGamesOptions(sortBy, sortOrder);
 
-            var pagedGames = _repository.GetGamesPaged(currentPageSize);
+            var pagedGames = _repository.GetGamesPaged(DefaultPageSize, sortOptions);
             var games = await pagedGames.GetPage(currentPage).ToListAsync();
             var pageCount = await pagedGames.GetPageCountAsync();
             var model = new ListGamesViewModel(games,
-                new PagingViewModel(pageCount, currentPage, p => Url.Action("Index", new {page = p})));
+                new PagingViewModel(pageCount, currentPage, p => Url.Action("Index", new {page = p, sortBy, sortOrder})),
+                sortOptions);
             return View(model);
         }
 
@@ -68,7 +70,7 @@ namespace GameRater.Controllers
         // GET: Game/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var game = await _repository.GetGameById(id, true);
+            var game = await _repository.GetGameById(id);
             if (game == null) return HttpNotFound();
             return View(game);
         }
@@ -90,25 +92,21 @@ namespace GameRater.Controllers
         }
 
         // GET: Game/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var game = await _repository.GetGameById(id);
+            if (game == null) return HttpNotFound();
+            return View(game);
         }
 
         // POST: Game/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeletePost(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            await _repository.DeleteGameById(id);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -88,9 +88,20 @@ namespace GameRater.DAL
             _db?.Dispose();
         }
 
-        public PagedQueryable<Game> GetGamesPaged(int pageSize)
+        public PagedQueryable<Game> GetGamesPaged(int pageSize, SortGamesOptions sortGamesOptions)
         {
-            return _db.Games.OrderBy(g => g.Id).PageBy(pageSize);
+            IQueryable<Game> games = _db.Games;
+            switch (sortGamesOptions.SortBy)
+            {
+                case SortBy.Title:
+                    games = sortGamesOptions.Ascending ? games.OrderBy(g => g.Title) : games.OrderByDescending(g => g.Title);
+                    break;
+                case SortBy.Score:
+                    games = sortGamesOptions.Ascending ? games.OrderBy(g => g.ReviewScore) : games.OrderByDescending(g => g.ReviewScore);
+                    break;
+            }
+
+            return games.PageBy(pageSize);
         }
     }
 }

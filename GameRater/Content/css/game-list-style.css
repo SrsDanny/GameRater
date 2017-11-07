@@ -1,0 +1,33 @@
+﻿.game-list-cover {
+    position: relative;
+    display: flex;
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-list-cover img {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.game-list-cover p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 4px;
+    text-align: center;
+    background-color: hsla(0, 0%, 20%, .6);
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.game-list-cover:hover p {
+    background-color: hsla(0, 0%, 20%, .9);
+}

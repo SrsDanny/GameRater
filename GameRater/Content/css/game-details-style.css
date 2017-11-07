@@ -1,0 +1,15 @@
+﻿.game-details-cover {
+    max-height: 200px;
+    max-width: 200px;
+    display: block;
+}
+
+.game-details-title {
+    margin-bottom: 40px;
+}
+
+.game-reviews-list {
+    background-color: hsl(0, 0%, 90%);
+    list-style: none;
+    padding: 8px;
+}

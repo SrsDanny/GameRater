@@ -219,6 +219,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ColumnHeaderHelper.cs" />
     <Compile Include="Helpers\PagingHtmlHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Games\ListGamesViewModel.cs" />
@@ -233,8 +234,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\game-details-style.css" />
+    <Content Include="Content\css\game-list-style.css" />
     <Content Include="Content\images\stars.png" />
-    <Content Include="Content\star-rating.css" />
+    <Content Include="Content\css\star-rating.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -304,6 +307,7 @@
     <Content Include="Views\Games\Details.cshtml" />
     <Content Include="Views\Shared\PagingPartial.cshtml" />
     <Content Include="Views\Shared\StarsRating.cshtml" />
+    <Content Include="Views\Games\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
