@@ -38,7 +38,9 @@
                     @:Anonymous
                 }
                 (rated: @review.Score.ToString("0.0")/5)
-                @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.Identity.GetUserId() == review.UserId)
+                @if (HttpContext.Current.User.IsInRole("Admin") 
+                    || HttpContext.Current.User.Identity.GetUserId() == review.UserId
+                    && review.UserId != null)
                 {
                     using (@Ajax.BeginForm("Delete", "Reviews", null, new AjaxOptions {OnSuccess = $"$('#review-{review.Id}').remove()"}, new { @class = "delete-review-form" }))
                     {
