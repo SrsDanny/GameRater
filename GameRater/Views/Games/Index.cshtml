@@ -6,20 +6,29 @@
     ViewBag.Title = "Games";
 }
 
-<h2>Games</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (Model.IsAdmin)
+{
+    <p>
+        @Html.ActionLink("Add game", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
             @Html.SortingColumnHeader(SortBy.Title, Model.SortGamesOptions, options => Url.Action("Index", options))
         </th>
         <th>
+            Summary
+        </th>
+        <th>
             @Html.SortingColumnHeader(SortBy.Score, Model.SortGamesOptions, options => Url.Action("Index", options))
         </th>
-        <th></th>
+        @if (Model.IsAdmin)
+        {
+            <th>
+                Actions
+            </th>
+        }
     </tr>
 
     @foreach (var item in Model.Games)
@@ -33,13 +42,19 @@
                     </a>
                 </div>
             </td>
+            <td>
+                <p>@item.ShortSummary</p>
+            </td>
             <td class="game-rating-cell">
                 @Html.Partial("StarsRating", item.ReviewScore)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-            </td>
+            @if (Model.IsAdmin)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                </td>
+            }
         </tr>
     }
 </table>

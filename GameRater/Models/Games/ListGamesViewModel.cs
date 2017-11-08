@@ -12,12 +12,14 @@ namespace GameRater.Models.Games
         public List<Game> Games { get; set; }
         public PagingViewModel Paging { get; set; }
         public SortGamesOptions SortGamesOptions { get; set; }
+        public bool IsAdmin { get; set; }
 
-        public ListGamesViewModel(List<Game> games, PagingViewModel paging, SortGamesOptions sortGamesOptions)
+        public ListGamesViewModel(List<Game> games, PagingViewModel paging, SortGamesOptions sortGamesOptions, bool displayEditAndDelete)
         {
             Paging = paging;
             Games = games;
             SortGamesOptions = sortGamesOptions;
+            IsAdmin = displayEditAndDelete;
         }
     }
 }

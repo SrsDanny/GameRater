@@ -19,6 +19,23 @@
     margin-bottom: 16px;
 }
 
+.game-reviews-list li:last-of-type {
+    margin-bottom: 0;
+}
+
 .game-details-summary-title {
     margin: 0;
+}
+
+.create-review-content-box {
+    min-width: 100%;
+}
+
+div.create-review {
+    margin-bottom: 0;
+}
+
+.delete-review-form {
+    display: inline-block;
+    margin-left: 20px;
 }

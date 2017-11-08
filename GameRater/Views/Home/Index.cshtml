@@ -2,9 +2,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron banner">
-    <h1>GameRater</h1>
+@section Banner
+{
     <p>Your <strong>#1</strong> site for rating games and writing reviews!</p>
     @Html.ActionLink("Get started now!", "Index", "Games", new {}, new {@class = "btn btn-primary btn-lg"})
-</div>
+}
 

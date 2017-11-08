@@ -19,7 +19,7 @@ namespace GameRater.Helpers
 
             var x = 0;
             var y = 0;
-            using (var bannerBitmap = new Bitmap(800, 200))
+            using (var bannerBitmap = new Bitmap(800, 300))
             using (var g = Graphics.FromImage(bannerBitmap))
             {
                 foreach (var path in imagePaths)
@@ -28,12 +28,12 @@ namespace GameRater.Helpers
                     {
                         g.DrawImage(image, x, y, 100, 100);
 
-                        if (x == 700 && y == 100) break;
+                        if (x == 700 && y == 200) break;
 
                         if (x == 700)
                         {
                             x = 0;
-                            y = 100;
+                            y += 100;
                         }
                         else
                         {
@@ -41,7 +41,7 @@ namespace GameRater.Helpers
                         }
                     }
                 }
-                g.FillRectangle(new SolidBrush(Color.FromArgb(200, 238, 238, 238)), 0, 0, 800, 200);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(200, 238, 238, 238)), 0, 0, 800, 300);
 
                 var stream = new MemoryStream();
                 bannerBitmap.Save(stream, ImageFormat.Jpeg);

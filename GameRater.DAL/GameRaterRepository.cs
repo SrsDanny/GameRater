@@ -42,19 +42,30 @@ namespace GameRater.DAL
             var game = await _db.Games.FindAsync(id);
             if (game != null && loadReviews)
             {
-                await _db.Entry(game).Collection(g => g.Reviews).LoadAsync();
+                await _db.Entry(game).Collection(g => g.Reviews).Query()
+                    .Include(r => r.User).LoadAsync();
             }
             return game;
         }
 
-        public async Task<Review> GetReviewById(int id, bool loadGame = false)
+        public async Task<Review> GetReviewById(int id)
         {
             var review = await _db.Reviews.FindAsync(id);
-            if (review != null && loadGame)
+            if (review != null)
             {
                 await _db.Entry(review).Reference(r => r.Game).LoadAsync();
+                await _db.Entry(review).Reference(r => r.User).LoadAsync();
             }
             return review;
+        }
+
+        public async Task DeleteReviewById(int id)
+        {
+            var review = await _db.Reviews.FindAsync(id);
+            if(review == null) return;
+
+            _db.Reviews.Remove(review);
+            await _db.SaveChangesAsync();
         }
 
         public async Task DeleteGameById(int id)

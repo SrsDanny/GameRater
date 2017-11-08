@@ -1,8 +1,9 @@
 ﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GameRater.DAL.Models
 {
-    public class GameRaterContext : DbContext
+    public class GameRaterContext : IdentityDbContext<ApplicationUser>
     {
         public GameRaterContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {

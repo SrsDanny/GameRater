@@ -1,37 +1,96 @@
-﻿@model GameRater.DAL.Models.Game
+﻿@using GameRater.Models.Reviews
+@using Microsoft.AspNet.Identity
+@model GameRater.Models.Games.GameDetailsViewModel
 
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Game.Title;
 }
 
-<h2 class="game-details-title">@Model.Title</h2>
+<h2 class="game-details-title">@Model.Game.Title</h2>
 
 <div class="row">
     <div class="col-md-3">
-        <img class="game-details-cover" src="@Model.ImageUrl"/>
-        @Html.Partial("StarsRating", Model.ReviewScore)
+        <img class="game-details-cover" src="@Model.Game.ImageUrl"/>
+        @Html.Partial("StarsRating", Model.Game.ReviewScore)
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="game-details-summary-title">Summary</h3>
             </div>
-            <div class="panel-body">@Model.Summary</div>
+            <div class="panel-body">@Model.Game.Summary</div>
         </div>
     </div>
 </div>
 
 <h2>Reviews</h2>
 <ul class="game-reviews-list">
-    @foreach (var review in Model.Reviews)
+    @foreach (var review in Model.Game.Reviews)
     {
-        <li class="panel panel-default">
+        <li class="panel panel-default" id="review-@review.Id">
             <div class="panel-heading">
-                Username and stuff (rated: @review.Score.ToString("0.0")/5)
+                @if (review.User != null)
+                {
+                    @review.User.UserName
+                }
+                else
+                {
+                    @:Anonymous
+                }
+                (rated: @review.Score.ToString("0.0")/5)
+                @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.Identity.GetUserId() == review.UserId)
+                {
+                    using (@Ajax.BeginForm("Delete", "Reviews", null, new AjaxOptions {OnSuccess = $"$('#review-{review.Id}').remove()"}, new { @class = "delete-review-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("reviewId", review.Id)
+                        <input type="submit" value="Delete" class="btn btn-danger"/>
+                    }
+                }
             </div>
             <div class="panel-body">
                 @review.Content
             </div>
         </li>
     }
+
+    <li>
+        <h3>Write a review!</h3>
+        <div class="panel panel-default create-review">
+            <div class="panel-heading">
+                @Model.Username
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("Create", "Reviews", FormMethod.Post, new {@class = "form-horizontal"}))
+                {
+                    var createReviewForm = new CreateReviewViewModel();
+
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("GameId", Model.Game.Id)
+                    <div class="form-group">
+                        <label class="control-label col-md-1" for="Score">Score</label>
+                        <div class="col-md-11">
+                            @Html.TextBoxFor(_ => createReviewForm.Score, new {id = "Score", Name = "Score", @class = "form-control"})
+                            @Html.ValidationMessage("Score", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea name="Content" id="Content" class="form-control create-review-content-box"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Post review" class="btn btn-default"/>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </li>
 </ul>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+}

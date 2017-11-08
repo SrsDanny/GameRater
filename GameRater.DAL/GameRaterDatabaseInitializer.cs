@@ -8,7 +8,7 @@ using GameRater.DAL.Models;
 
 namespace GameRater.DAL
 {
-    public class GameRaterDatabaseInitializer : DropCreateDatabaseAlways<GameRaterContext>
+    public class GameRaterDatabaseInitializer : DropCreateDatabaseIfModelChanges<GameRaterContext>
     {
         protected override void Seed(GameRaterContext context)
         {

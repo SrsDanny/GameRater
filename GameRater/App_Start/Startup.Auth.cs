@@ -1,4 +1,5 @@
 ﻿using System;
+using GameRater.DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -6,6 +7,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using GameRater.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GameRater
 {
@@ -15,7 +17,7 @@ namespace GameRater
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(() => new GameRaterContext());
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
@@ -63,6 +65,37 @@ namespace GameRater
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            CreateDefaultUsersAndRoles();
+        }
+
+        private void CreateDefaultUsersAndRoles()
+        {
+            using (var ctx = new GameRaterContext())
+            {
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ctx));
+                var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(ctx));
+
+                if (!roleManager.RoleExists("Admin"))
+                {
+                    var adminRole = new IdentityRole{Name = "Admin"};
+                    roleManager.Create(adminRole);
+                }
+
+                if (userManager.FindByName("Admin") == null)
+                {
+                    var adminUser = new ApplicationUser
+                    {
+                        UserName = "Admin",
+                        Email = "admin@admin.com"
+                    };
+                    var adminPassword = "admin1";
+
+                    userManager.Create(adminUser, adminPassword);
+                    userManager.AddToRole(adminUser.Id, "Admin");
+                }
+            }
+            
         }
     }
 }
